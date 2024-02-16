@@ -9,6 +9,28 @@
         <script src="./files/jquery-3.5.1.slim.min.js"></script>
 
         <style>
+            @-webkit-keyframes shadow-drop-center {
+                0% {
+                    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                }
+                100% {
+                    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+                            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+                }
+            }
+
+            @keyframes shadow-drop-center {
+                0% {
+                    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                }
+                100% {
+                    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+                            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+                }
+            }
+
             /* extra small mobile device */
             @media screen and (max-width: 374px) {
                 #nav-brand {
@@ -23,15 +45,19 @@
 
                 .layanan-publik {
                     display: grid;
-                    grid-template-columns: 1fr;
+                    grid-template-columns: 1fr 1fr;
                     gap: .5rem;
                 }
 
                 .card-brand {
-                    width: 70%;
-                    border-radius: 105px;
+                    width: 60px !important;
+                    height: 50px;
+                    margin: 10px 0 !important;
                 }
 
+                .card-title {
+                    font-size: .7rem !important;
+                }
                 .card-title-number {
                     margin: 0;
                     background: white;
@@ -61,13 +87,8 @@
 
                 .layanan-publik {
                     display: grid;
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 1fr 1fr 1fr;
                     gap: .5rem;
-                }
-
-                .card-brand {
-                    width: 70%;
-                    border-radius: 105px;
                 }
 
                 .card-title-number {
@@ -82,6 +103,16 @@
                     width: 52px;
                     padding: 11px;
                     border-radius: 15px;
+                }
+
+                .card-brand {
+                    width: 60px !important;
+                    height: 50px;
+                    margin: 10px 0 !important;
+                }
+
+                .card-title {
+                    font-size: .7rem !important;
                 }
             }
 
@@ -124,10 +155,12 @@
 
             /* desktop device */
             @media screen and (min-width: 1024px) and (max-width: 1439px) {
-                .layanan-publik {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr !important;
-                    gap: 1rem;
+                .card-brand {
+                    margin: 10px 0 !important;
+                }
+
+                .card-title {
+                    font-size: .8rem !important;
                 }
             }
 
@@ -160,11 +193,21 @@
                     width: 30px;
                 }
 
+                /* .card-title {
+                    font-size: 1.5rem !important;
+                } */
+
                 .card-number {
                     background: #112660;
                     width: 52px;
                     padding: 11px;
                     border-radius: 15px;
+                }
+            }
+
+            @media screen and (max-width: 999px) {
+                #top-selengkapnya {
+                    display: none;
                 }
             }
 
@@ -174,6 +217,10 @@
                 }
 
                 #berita-line {
+                    display: none;
+                }
+
+                #bottom-selengkapnya {
                     display: none;
                 }
             }
@@ -231,10 +278,6 @@
                 display: none;
             }
 
-            .card-title {
-                font-size: 1.5rem !important;
-            }
-
             .card-brand {
                 width: 100%;
                 margin: 20px 0;
@@ -257,10 +300,46 @@
                 cursor: pointer;
             }
 
+            .layanan-card:hover {
+                -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	            animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            }
+
             .berita-card-container {
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: .5rem;
+            }
+
+            .carousel-inner img {
+                width: 1000px; 
+                margin: auto;
+            }
+    
+            .carousel img {
+                height: 500px;
+                object-fit: cover;
+                user-select: none;
+                margin: 0 14px;
+                width: calc(100% / 3);
+                transition: transform 0.5s ease;
+            }
+    
+            .carousel img:first-child {
+                margin-left: 0;
+                transform: translateX(0);
+            }
+    
+            @media  screen and (max-width: 900px) {
+                .carousel img {
+                    width: calc(100% / 2);
+                }
+            }
+    
+            @media  screen and (max-width: 550px) {
+                .carousel img {
+                    width: 100%;
+                }
             }
         </style>
     </head>
@@ -301,36 +380,35 @@
             </div>
         </nav>
 
-        <div class="container mt-3">
-            
-            <!-- carousel -->
-            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./files/banner 1.png" class="d-block w-100" alt="First Slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./files/banner 1.png" class="d-block w-100" alt="Second Slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./files/banner 1.png" class="d-block w-100" alt="Third Slide">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <!-- carousel -->
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./files/jkt1.jpg" class="d-block w-100" alt="First Slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="./files/jkt2.jpg" class="d-block w-100" alt="Second Slide">
+                </div>
+                <div class="carousel-item">
+                    <img src="./files/jkt4.jpg" class="d-block w-100" alt="Third Slide">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
+        <div class="container mt-3">
             <!-- layanan publik -->
             <div>
                 <div class="banner-text">
@@ -395,7 +473,7 @@
                 <div class="banner-text">
                     <span>Berita Utama</span>
                     <div class="line"></div>
-                    <div class="button-container">
+                    <div class="button-container" id="top-selengkapnya">
                         <button class="custom-button">Lihat Semua Berita</button>
                     </div>
                 </div>
@@ -426,6 +504,9 @@
                                 <h4>Dinsos DKI Raih Sejumlah Penghargaan, Kinerja Pelayanan Publik</h4>
                                 <p class="m-0">10 Oktober 2023</p>
                             </div>
+                        </div>
+                        <div class="button-container" id="bottom-selengkapnya">
+                            <button class="custom-button">Lihat Semua Berita</button>
                         </div>
                     </div>
                 </div>
